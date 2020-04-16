@@ -29,8 +29,9 @@ namespace CeloInterview_RestAPi_Test
         {
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<UsersContext>(options => options.UseSqlServer(connection));
+            services.AddHealthChecks();
             services.AddControllers();
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +47,7 @@ namespace CeloInterview_RestAPi_Test
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseHealthChecks("/health");
 
             app.UseEndpoints(endpoints =>
             {

@@ -76,12 +76,18 @@ namespace CeloInterview_RestAPi_Test.Repositories
             if (userfetchedBasedOnId == null)
                 return false;
 
-            userfetchedBasedOnId.Title = userDetails.Title;
-            userfetchedBasedOnId.FirstName = userDetails.FirstName;
-            userfetchedBasedOnId.LastName = userDetails.LastName;
-            userfetchedBasedOnId.PhoneNumber = userDetails.PhoneNumber;
-            userfetchedBasedOnId.ProfileImages = userDetails.ProfileImages;
-            userfetchedBasedOnId.EmailId = userDetails.EmailId;
+            if(userDetails.Title!= null)
+                userfetchedBasedOnId.Title = userDetails.Title;
+            if(userDetails.FirstName!=null)
+                userfetchedBasedOnId.FirstName = userDetails.FirstName;
+            if(userDetails.LastName!=null)
+                userfetchedBasedOnId.LastName = userDetails.LastName;
+            if(userDetails.PhoneNumber!=null)
+                userfetchedBasedOnId.PhoneNumber = userDetails.PhoneNumber;
+            if(userDetails.ProfileImages!=null)
+                userfetchedBasedOnId.ProfileImages = userDetails.ProfileImages;
+            if(userDetails.EmailId!=null)
+                userfetchedBasedOnId.EmailId = userDetails.EmailId;
 
             try
             {

@@ -11,6 +11,5 @@ namespace CeloInterview_RestAPi_Test.Models
         int SaveChanges();
         EntityEntry Entry(Object entity);
 
-        void MarkAsModified(Users users);
     }
 }
