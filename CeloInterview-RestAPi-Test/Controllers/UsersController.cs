@@ -39,8 +39,12 @@ namespace CeloInterview_RestAPi_Test.Controllers
             return Ok(_repositoryContext.GetAllUsers());    
         }
 
-        
-        
+
+        [HttpGet("{quantity}")]
+        public IActionResult FetchRandomUsersBasedOnQuantity(int quantity)
+        {
+            return Ok(_repositoryContext.FetchUsersBasedOnQuantitySpecified(quantity));
+        }
 
 
         /*

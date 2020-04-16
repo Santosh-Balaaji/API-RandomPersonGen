@@ -35,7 +35,7 @@ namespace RestAPI_TestCases
             var data = _Users.GetAllUsers();
 
             //Assert
-            Assert.Equal(data.Length, actualCount);
+            Assert.Equal(data.Count, actualCount);
         }
         [Fact]
         public void GetUsers_BasedOnFirstName_ReturnsTrue()

@@ -5,7 +5,8 @@ namespace CeloInterview_RestAPi_Test.Repositories
 {
     public interface IUserRepository
     {
-        Users[] GetAllUsers();
+        List<Users> GetAllUsers();
         List<Users> GetUsersBasedOnName(string searchParam);
+        List<Users> FetchUsersBasedOnQuantitySpecified(int quantity);
     }
 }
