@@ -46,11 +46,13 @@ namespace CeloInterview_RestAPi_Test.Controllers
             return Ok(_repositoryContext.FetchUsersBasedOnQuantitySpecified(quantity));
         }
 
+        //Get: api/Users/Santosh
         [HttpGet("{name}")]
         public IActionResult FetchUsersBasedOnName(string name)
         {
             return Ok(_repositoryContext.GetUsersBasedOnName(name));
         }
+
 
         /*
         // GET: api/Users/5

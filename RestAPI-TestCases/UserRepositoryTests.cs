@@ -96,6 +96,21 @@ namespace RestAPI_TestCases
             Assert.Equal(dataCount, quantity);
         }
 
+        [Fact]
+        public void GetSingleUser_BasedOnUserId_ReturnUserMatchingThatId()
+        {
+
+            //Arrange
+            int id = 1;
+
+            // Act
+            var data = _Users.GetUsersBasedOnId(id);
+
+            // Assert
+
+            Assert.Equal(id, data.UserId);
+        }
+
 
     }
 }

@@ -34,5 +34,14 @@ namespace CeloInterview_RestAPi_Test.Repositories
 
             return result;
         }
+
+        public Users GetUsersBasedOnId(int id)
+        {
+            var result = (from user in _UsersContext.Users
+                          where user.UserId == id
+                          select user).FirstOrDefault();
+            return result;
+        }
+
     }
 }
