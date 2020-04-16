@@ -36,7 +36,7 @@ namespace CeloInterview_RestAPi_Test.Controllers
 
         public IActionResult GetUsers()
         {
-            return Ok(_repositoryContext.GetUsers());    
+            return Ok(_repositoryContext.GetAllUsers());    
         }
 
         

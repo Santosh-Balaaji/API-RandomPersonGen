@@ -24,17 +24,33 @@ namespace RestAPI_TestCases
             _Users = new UserRepository(_DBContextMock);
         }
 
+
         [Fact]
-        public void GetUsers_ReturnsAllUsers()
+        public void GetAllUsers_ReturnsAllUsers()
+        {
+            //Arrange
+            var actualCount= _MockUsers.Users.Count;
+
+            //Act
+            var data = _Users.GetAllUsers();
+
+            //Assert
+            Assert.Equal(data.Length, actualCount);
+        }
+        [Fact]
+        public void GetUsers_BasedOnFirstName_ReturnsTrue()
         {
 
             //Arrange
+            string firstname = "Santosh";
             
             // Act
-            var data = _Users.GetUsers();
+            var data = _Users.GetUsersBasedOnName(firstname);
 
             // Assert
-            Assert.Equal("Santosh", data[0].FirstName);
+            Assert.Equal(firstname, data[0].FirstName);
         }
+
+
     }
 }
