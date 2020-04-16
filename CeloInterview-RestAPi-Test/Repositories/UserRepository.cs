@@ -27,5 +27,12 @@ namespace CeloInterview_RestAPi_Test.Repositories
                           select user).ToList();
             return result;
         }
+
+        public List<Users> FetchUsersBasedOnQuantitySpecified(int quantity)
+        {
+            var  result = _UsersContext.Users.OrderBy(x => Guid.NewGuid()).Take(quantity).ToList();
+
+            return result;
+        }
     }
 }

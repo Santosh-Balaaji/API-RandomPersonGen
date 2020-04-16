@@ -79,6 +79,23 @@ namespace RestAPI_TestCases
             Assert.Equal(dataCount, count);
         }
 
+        [Fact]
+        public void GetRandomUsers_BasedOnQuantity_ReturnsRandomUsersOfSpecifiedAmount()
+        {
+
+            //Arrange
+            int quantity = 3;
+            int dataCount = 0;
+
+            // Act
+            var data = _Users.FetchUsersBasedOnQuantitySpecified(quantity);
+            dataCount = data.Count;
+
+            // Assert
+
+            Assert.Equal(dataCount, quantity);
+        }
+
 
     }
 }

@@ -13,5 +13,7 @@ namespace CeloInterview_RestAPi_Test.Models
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
         public byte[] ProfileImages { get; set; }
+
+
     }
 }
