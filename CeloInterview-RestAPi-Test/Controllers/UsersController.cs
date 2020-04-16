@@ -64,7 +64,11 @@ namespace CeloInterview_RestAPi_Test.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUserBasedOnId(int id)
         {
-            return Ok();
+            bool deleteStatus = _repositoryContext.DeleteUserBasedOnUserId(id);
+            if (deleteStatus)
+                return Ok(_repositoryContext.GetAllUsers());
+            else
+                throw new Exception("User belonging to the mentioned Id not found");
         }
 
         /*

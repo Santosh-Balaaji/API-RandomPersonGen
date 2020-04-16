@@ -48,6 +48,8 @@ namespace CeloInterview_RestAPi_Test.Repositories
             var deleteUserDetails = (from user in _UsersContext.Users
                                      where user.UserId == id
                                      select user);
+            if (deleteUserDetails == null)
+                return false;
 
             foreach (var detail in deleteUserDetails)
             {
@@ -64,6 +66,34 @@ namespace CeloInterview_RestAPi_Test.Repositories
                 // Provide for exceptions.
             }
             return true;
+        }
+
+        public bool UpdateUserBasedOnId(int id, Users userDetails)
+        {
+            var userfetchedBasedOnId = (from user in _UsersContext.Users
+                                        where user.UserId == id
+                                        select user).FirstOrDefault();
+            if (userfetchedBasedOnId == null)
+                return false;
+
+            userfetchedBasedOnId.Title = userDetails.Title;
+            userfetchedBasedOnId.FirstName = userDetails.FirstName;
+            userfetchedBasedOnId.LastName = userDetails.LastName;
+            userfetchedBasedOnId.PhoneNumber = userDetails.PhoneNumber;
+            userfetchedBasedOnId.ProfileImages = userDetails.ProfileImages;
+            userfetchedBasedOnId.EmailId = userDetails.EmailId;
+
+            try
+            {
+                _UsersContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+            return true;
+
         }
 
     }

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 using RestAPI_TestCases.Repositories;
 using RestAPI_TestCases.Utils;
+using System;
+using System.Text;
 using Xunit;
 
 namespace RestAPI_TestCases
@@ -112,7 +114,7 @@ namespace RestAPI_TestCases
         }
 
         [Fact]
-        public void DeleteSingleUser_BasedOnUserId_ReturnsAllUsersExceptDeletedUser()
+        public void DeleteSingleUser_BasedOnUserId_ReturnsDeleteStatus()
         {
 
             //Arrange
@@ -123,7 +125,24 @@ namespace RestAPI_TestCases
 
             // Assert
 
-            Assert.Equal(true,data);
+            Assert.True(data);
+        }
+
+        [Fact]
+
+        public void UpdateSingleUser_BasedOnUserId_ReturnsUpdatedUserDetails()
+        {
+            //Arrange
+            int id = 6;
+            var user =new Users { UserId = 6, Title = "Mr", FirstName = "Sree", LastName = "Vassa", EmailId = "sree@gmail.com", PhoneNumber = "220760341", DateOfBirth = DateTime.Parse("1995-02-21T00:00:00"), ProfileImages = Encoding.ASCII.GetBytes("c2FudG9zaC5wbmc=") };
+
+            //Act
+            var data = _Users.UpdateUserBasedOnId(id, user);
+
+
+            //Assert
+            Assert.True(data);
+         
         }
 
 
