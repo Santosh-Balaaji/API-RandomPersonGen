@@ -71,6 +71,18 @@ namespace CeloInterview_RestAPi_Test.Controllers
                 throw new Exception("User belonging to the mentioned Id not found");
         }
 
+        // PUT: api/Users/5
+        [HttpPut("{id}")]
+        public IActionResult UpdateUserDetailsBasedOnId(int id,[FromBody] Users user)
+        {
+            bool updateStatus = _repositoryContext.UpdateUserBasedOnId(id, user);
+            if (updateStatus)
+                return Ok(_repositoryContext.GetUsersBasedOnId(id));
+            else
+                throw new Exception("User belonging to the mentioned Id not found");
+
+        }
+
         /*
         // GET: api/Users/5
         [HttpGet("{id}")]

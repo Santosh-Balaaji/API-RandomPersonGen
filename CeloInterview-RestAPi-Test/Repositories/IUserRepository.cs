@@ -10,5 +10,6 @@ namespace CeloInterview_RestAPi_Test.Repositories
         List<Users> FetchUsersBasedOnQuantitySpecified(int quantity);
         Users GetUsersBasedOnId(int id);
         bool DeleteUserBasedOnUserId(int id);
+        bool UpdateUserBasedOnId(int id, Users userDetails);
     }
 }
