@@ -53,6 +53,12 @@ namespace CeloInterview_RestAPi_Test.Controllers
             return Ok(_repositoryContext.GetUsersBasedOnName(name));
         }
 
+        //GET: api/Users/id/1 
+        [HttpGet("id/{id:int}")]
+        public IActionResult FetchUserBasedOnUserId(int id)
+        {
+            return Ok(_repositoryContext.GetUsersBasedOnId(id));
+        }
 
         /*
         // GET: api/Users/5

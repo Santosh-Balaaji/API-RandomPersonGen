@@ -8,5 +8,6 @@ namespace CeloInterview_RestAPi_Test.Repositories
         List<Users> GetAllUsers();
         List<Users> GetUsersBasedOnName(string searchParam);
         List<Users> FetchUsersBasedOnQuantitySpecified(int quantity);
+        Users GetUsersBasedOnId(int id);
     }
 }
