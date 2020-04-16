@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CeloInterview_RestAPi_Test.Models;
+using CeloInterview_RestAPi_Test.Repositories;
 
 namespace CeloInterview_RestAPi_Test.Controllers
 {
@@ -13,20 +14,36 @@ namespace CeloInterview_RestAPi_Test.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UsersContext _context;
+        //private readonly UsersContext _context;
+        private readonly IUserRepository _repositoryContext;
+
+        /* public UsersController(UsersContext context)
+         {
+             _context = context;
+         }*/
 
         public UsersController(UsersContext context)
         {
-            _context = context;
+            _repositoryContext = new UserRepository(context);
         }
 
         // GET: api/Users
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
+        /*public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
+        }*/
+        [HttpGet]
+
+        public IActionResult GetUsers()
+        {
+            return Ok(_repositoryContext.GetUsers());    
         }
 
+        
+        
+
+
+        /*
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Users>> GetUsers(int id)
@@ -105,5 +122,6 @@ namespace CeloInterview_RestAPi_Test.Controllers
         {
             return _context.Users.Any(e => e.UserId == id);
         }
+        */
     }
 }

@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CeloInterview-RestAPi-Test", "CeloInterview-RestAPi-Test\CeloInterview-RestAPi-Test.csproj", "{5D0863C4-3B81-44E3-B5C9-FB21AFBD565F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestAPI-TestCases", "RestAPI-TestCases\RestAPI-TestCases.csproj", "{5A320455-F957-43F7-A961-DF4EE7BC6C71}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D0863C4-3B81-44E3-B5C9-FB21AFBD565F} = {5D0863C4-3B81-44E3-B5C9-FB21AFBD565F}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{5D0863C4-3B81-44E3-B5C9-FB21AFBD565F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D0863C4-3B81-44E3-B5C9-FB21AFBD565F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D0863C4-3B81-44E3-B5C9-FB21AFBD565F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A320455-F957-43F7-A961-DF4EE7BC6C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A320455-F957-43F7-A961-DF4EE7BC6C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A320455-F957-43F7-A961-DF4EE7BC6C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A320455-F957-43F7-A961-DF4EE7BC6C71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

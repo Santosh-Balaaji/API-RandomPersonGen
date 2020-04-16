@@ -15,7 +15,10 @@ namespace CeloInterview_RestAPi_Test.Models
 
         public virtual DbSet<Users> Users { get; set; }
 
-
+        public void MarkAsModified(Users users)
+        {
+            Entry(users).State = EntityState.Modified;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
