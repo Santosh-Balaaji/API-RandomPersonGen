@@ -23,7 +23,7 @@ namespace CeloInterview_RestAPi_Test.Repositories
         public List<Users> GetUsersBasedOnName(string searchParam)
         {
             var result = (from user in _UsersContext.Users
-                          where user.FirstName == searchParam
+                          where user.FirstName == searchParam || user.LastName == searchParam
                           select user).ToList();
             return result;
         }

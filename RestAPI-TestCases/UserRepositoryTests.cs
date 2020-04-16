@@ -43,12 +43,40 @@ namespace RestAPI_TestCases
 
             //Arrange
             string firstname = "Santosh";
-            
+            int count=0,dataCount = 0;
             // Act
             var data = _Users.GetUsersBasedOnName(firstname);
+            dataCount = data.Count;
+            foreach (var user in data)
+            {
+                if (user.FirstName == firstname)
+                    count++;
+            }
 
             // Assert
-            Assert.Equal(firstname, data[0].FirstName);
+            Assert.Equal(dataCount, count);
+        }
+
+        [Fact]
+        public void GetUsers_BasedOnFirstorLastNames_ReturnsTrue()
+        {
+
+            //Arrange
+            string name = "Balaaji";
+
+            // Act
+            var data = _Users.GetUsersBasedOnName(name);
+            int count = 0, dataCount = 0;
+            dataCount = data.Count;
+            foreach (var user in data)
+            {
+                if (user.FirstName == name || user.LastName == name)
+                    count++;
+            }
+
+            // Assert
+
+            Assert.Equal(dataCount, count);
         }
 
 
