@@ -111,6 +111,22 @@ namespace RestAPI_TestCases
             Assert.Equal(id, data.UserId);
         }
 
+        [Fact]
+        public void DeleteSingleUser_BasedOnUserId_ReturnsAllUsersExceptDeletedUser()
+        {
+
+            //Arrange
+            int id = 5;
+
+            // Act
+            var data = _Users.DeleteUserBasedOnUserId(id);
+
+            // Assert
+
+            Assert.Equal(true,data);
+        }
+
+
 
     }
 }

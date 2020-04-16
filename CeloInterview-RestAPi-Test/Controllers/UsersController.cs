@@ -60,6 +60,13 @@ namespace CeloInterview_RestAPi_Test.Controllers
             return Ok(_repositoryContext.GetUsersBasedOnId(id));
         }
 
+        // DELETE: api/Users/5
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUserBasedOnId(int id)
+        {
+            return Ok();
+        }
+
         /*
         // GET: api/Users/5
         [HttpGet("{id}")]

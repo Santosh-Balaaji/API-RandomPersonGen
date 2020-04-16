@@ -43,5 +43,28 @@ namespace CeloInterview_RestAPi_Test.Repositories
             return result;
         }
 
+        public bool DeleteUserBasedOnUserId(int id)
+        {
+            var deleteUserDetails = (from user in _UsersContext.Users
+                                     where user.UserId == id
+                                     select user);
+
+            foreach (var detail in deleteUserDetails)
+            {
+                _UsersContext.Users.Remove(detail);
+            }
+
+            try
+            {
+                _UsersContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+            return true;
+        }
+
     }
 }
