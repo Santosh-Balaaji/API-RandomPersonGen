@@ -39,13 +39,18 @@ namespace CeloInterview_RestAPi_Test.Controllers
             return Ok(_repositoryContext.GetAllUsers());    
         }
 
-
-        [HttpGet("{quantity}")]
+        //GET: api/Users/3 
+        [HttpGet("{quantity:int}")]
         public IActionResult FetchRandomUsersBasedOnQuantity(int quantity)
         {
             return Ok(_repositoryContext.FetchUsersBasedOnQuantitySpecified(quantity));
         }
 
+        [HttpGet("{name}")]
+        public IActionResult FetchUsersBasedOnName(string name)
+        {
+            return Ok(_repositoryContext.GetUsersBasedOnName(name));
+        }
 
         /*
         // GET: api/Users/5

@@ -15,9 +15,9 @@ namespace CeloInterview_RestAPi_Test.Repositories
             _UsersContext = usersContext;
         }
 
-        public List<Users> GetAllUsers()
+        public  List<Users> GetAllUsers()
         {
-            return _UsersContext.Users.ToList();
+            return  _UsersContext.Users.ToList();
         }
 
         public List<Users> GetUsersBasedOnName(string searchParam)
