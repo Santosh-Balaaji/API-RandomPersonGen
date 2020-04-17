@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+// This provides the Mock Model data for testing purposes.
 namespace RestAPI_TestCases.Repositories
 {
     public class MockUsers

@@ -53,7 +53,7 @@ namespace CeloInterview_RestAPi_Test.Controllers
             if (deleteStatus)
                 return Ok(_repositoryContext.GetAllUsers());
             else
-                throw new Exception("User belonging to the mentioned Id not found");
+                return BadRequest("User Belonging to the mentioned Id cannot be found");
         }
 
         // PUT: api/Users/5

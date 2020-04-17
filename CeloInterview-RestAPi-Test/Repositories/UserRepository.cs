@@ -47,14 +47,12 @@ namespace CeloInterview_RestAPi_Test.Repositories
         {
             var deleteUserDetails = (from user in _UsersContext.Users
                                      where user.UserId == id
-                                     select user);
+                                     select user).FirstOrDefault();
             if (deleteUserDetails == null)
                 return false;
 
-            foreach (var detail in deleteUserDetails)
-            {
-                _UsersContext.Users.Remove(detail);
-            }
+                _UsersContext.Users.Remove(deleteUserDetails);
+            
 
             try
             {

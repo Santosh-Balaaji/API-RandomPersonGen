@@ -27,8 +27,8 @@ namespace CeloInterview_RestAPi_Test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContextPool<UsersContext>(options => options.UseSqlServer(connection));
+            var connection = Configuration.GetConnectionString("DefaultConnection");  // Connection String fetched from appSettings.json
+            services.AddDbContextPool<UsersContext>(options => options.UseSqlServer(connection));    
             services.AddHealthChecks();
             services.AddControllers();
             
@@ -45,10 +45,10 @@ namespace CeloInterview_RestAPi_Test
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors();
+            app.UseCors();     // Allow Cors Policy 
 
             app.UseAuthorization();
-            app.UseHealthChecks("/health");
+            app.UseHealthChecks("/health");  // Healthcheck to check whether our connection stays healthy 
 
             app.UseEndpoints(endpoints =>
             {

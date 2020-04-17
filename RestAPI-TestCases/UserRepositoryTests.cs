@@ -10,6 +10,8 @@ using Xunit;
 
 namespace RestAPI_TestCases
 {
+    // This is a Xunit Test Framework to test the functionalities of the UserRepsitory class.
+    // Since we have decoupled our context object from our APIs and placed them on UserRepository, the test is focused on testing the functions present in UserRepository than testing the APIs.
     public class UserRepositoryTests
     {
         private MockUsers _MockUsers;
@@ -19,11 +21,11 @@ namespace RestAPI_TestCases
 
         public UserRepositoryTests()
         {
-            _MockUsers = new MockUsers();
-             _MockDBSet = NSubstitueUtils.CreateMockDbSet(_MockUsers.Users);
-             _DBContextMock = Substitute.For<IUsersContext>();
+            _MockUsers = new MockUsers();                                                       //Object of the MockUsers class
+             _MockDBSet = NSubstitueUtils.CreateMockDbSet(_MockUsers.Users);                    //Creating a MockDBset of the MockUsers's Users list
+             _DBContextMock = Substitute.For<IUsersContext>();                                  
             _DBContextMock.Users.Returns(_MockDBSet);
-            _Users = new UserRepository(_DBContextMock);
+            _Users = new UserRepository(_DBContextMock);                                        //Passing in the DBContextMock object as a context object to the UserRepository class
         }
 
 
@@ -129,6 +131,21 @@ namespace RestAPI_TestCases
         }
 
         [Fact]
+        public void DeleteSingleUser_UnAvailableUserId_ReturnsDeleteStatusFalse()
+        {
+
+            //Arrange
+            int id = 7;
+
+            // Act
+            var data = _Users.DeleteUserBasedOnUserId(id);
+
+            // Assert
+
+            Assert.False(data);
+        }
+
+        [Fact]
 
         public void UpdateSingleUser_BasedOnUserId_ReturnsUpdatedUserDetails()
         {
@@ -144,8 +161,5 @@ namespace RestAPI_TestCases
             Assert.True(data);
          
         }
-
-
-
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 
 namespace RestAPI_TestCases.Utils
 {
+    //This class provides a mockDBSet by setting up IQueryable methods as a substitute for the actual DBSet using NSubstitute.
     public static class NSubstitueUtils
     {
         public static DbSet<T> CreateMockDbSet<T>(IEnumerable<T> data = null)
