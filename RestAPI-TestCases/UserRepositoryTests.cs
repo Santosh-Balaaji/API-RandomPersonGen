@@ -29,40 +29,57 @@ namespace RestAPI_TestCases
         }
 
 
+        
+
         [Fact]
-        public void GetAllUsers_ReturnsAllUsers()
+        public void GetUsers_BasedOnFirstName_PassingNull_Returns0()
         {
+
             //Arrange
-            var actualCount= _MockUsers.Users.Count;
+            string firstname = "";
+            int dataCount = 0;
+            // Act
+            var data = _Users.GetUsersBasedOnName(firstname);
+            dataCount = data.Count;
+           
 
-            //Act
-            var data = _Users.GetAllUsers();
-
-            //Assert
-            Assert.Equal(data.Count, actualCount);
+            // Assert
+            Assert.Equal(0,dataCount);
         }
         [Fact]
-        public void GetUsers_BasedOnFirstName_ReturnsTrue()
+        public void GetUsers_BasedOnFirstName_PassingStringSantosh_Returns1()
         {
 
             //Arrange
             string firstname = "Santosh";
-            int count=0,dataCount = 0;
+            int dataCount = 0;
             // Act
             var data = _Users.GetUsersBasedOnName(firstname);
             dataCount = data.Count;
-            foreach (var user in data)
-            {
-                if (user.FirstName == firstname)
-                    count++;
-            }
+            
 
             // Assert
-            Assert.Equal(dataCount, count);
+            Assert.Equal(1,dataCount);
         }
 
         [Fact]
-        public void GetUsers_BasedOnFirstorLastNames_ReturnsTrue()
+        public void GetUsers_BasedOnFirstName_PassingStringArnold_Returns0()
+        {
+
+            //Arrange
+            string firstname = "Arnold";
+            int dataCount = 0;
+            // Act
+            var data = _Users.GetUsersBasedOnName(firstname);
+            dataCount = data.Count;
+
+
+            // Assert
+            Assert.Equal(0, dataCount);
+        }
+
+        [Fact]
+        public void GetUsers_BasedOnFirstorLastNames_PassingStringBalaaji_Returns1()
         {
 
             //Arrange
@@ -70,21 +87,47 @@ namespace RestAPI_TestCases
 
             // Act
             var data = _Users.GetUsersBasedOnName(name);
-            int count = 0, dataCount = 0;
+            int dataCount = 0;
             dataCount = data.Count;
-            foreach (var user in data)
-            {
-                if (user.FirstName == name || user.LastName == name)
-                    count++;
-            }
+            
 
             // Assert
 
-            Assert.Equal(dataCount, count);
+            Assert.Equal(1,dataCount);
         }
 
         [Fact]
-        public void GetRandomUsers_BasedOnQuantity_ReturnsRandomUsersOfSpecifiedAmount()
+        public void GetAllUsers_Returns6()
+        {
+            //Arrange
+            var actualCount = 6;
+
+            //Act
+            var data = _Users.GetAllUsers();
+
+            //Assert
+            Assert.Equal(actualCount, data.Count);
+        }
+
+        [Fact]
+        public void GetRandomUsers_BasedOnQuantitySpecified_Passing0_Returns0()
+        {
+
+            //Arrange
+            int quantity = 0;
+            int dataCount = 0;
+
+            // Act
+            var data = _Users.FetchUsersBasedOnQuantitySpecified(quantity);
+            dataCount = data.Count;
+
+            // Assert
+
+            Assert.Equal(dataCount, quantity);
+        }
+
+        [Fact]
+        public void GetRandomUsers_BasedOnQuantitySpecified_Passed3_Returns3()
         {
 
             //Arrange
@@ -100,8 +143,35 @@ namespace RestAPI_TestCases
             Assert.Equal(dataCount, quantity);
         }
 
+
+        //This test case can fail sometimes as both the call statements might fetch the same set of users.
         [Fact]
-        public void GetSingleUser_BasedOnUserId_ReturnUserMatchingThatId()
+        public void CheckForRandomUsers_Passed3_ReturnsDifferentSetofUsers()
+        {
+
+            //Arrange
+            int quantity = 3;
+            int count = 0;
+
+            // Act
+            var query1 = _Users.FetchUsersBasedOnQuantitySpecified(quantity);
+            var query2 = _Users.FetchUsersBasedOnQuantitySpecified(quantity);
+            foreach (var i in query1)
+            {
+                foreach (var j in query2)
+                {
+                    if (i.UserId == j.UserId)
+                        count++;
+                }
+            }
+
+            // Assert
+
+            Assert.NotEqual(quantity, count);
+        }
+
+        [Fact]
+        public void GetSingleUser_BasedOnUserId_Passed1_ReturnUserMatchingThatId()
         {
 
             //Arrange
@@ -116,7 +186,22 @@ namespace RestAPI_TestCases
         }
 
         [Fact]
-        public void DeleteSingleUser_BasedOnUserId_ReturnsDeleteStatus()
+        public void GetSingleUser_BasedOnUserId_Passed0_ReturnsNull()
+        {
+
+            //Arrange
+            int id = 0;
+
+            // Act
+            Users data = _Users.GetUsersBasedOnId(id);
+
+            // Assert
+
+            Assert.Null(data);
+        }
+
+        [Fact]
+        public void DeleteSingleUser_BasedOnUserId_ReturnsDeleteStatusTrue()
         {
 
             //Arrange
@@ -146,8 +231,24 @@ namespace RestAPI_TestCases
         }
 
         [Fact]
+        public void UpdateSingleUser_BasedOnUserId_PassedInvalidUserId_ReturnsFalse()
+        {
+            //Arrange
+            int id = 8;
+            var user = new Users { UserId = 6, Title = "Mr", FirstName = "Sree", LastName = "Vassa", EmailId = "sree@gmail.com", PhoneNumber = "220760341", DateOfBirth = DateTime.Parse("1995-02-21T00:00:00"), ProfileImages = Encoding.ASCII.GetBytes("c2FudG9zaC5wbmc=") };
 
-        public void UpdateSingleUser_BasedOnUserId_ReturnsUpdatedUserDetails()
+            //Act
+            var data = _Users.UpdateUserBasedOnId(id, user);
+
+
+            //Assert
+            Assert.False(data);
+
+        }
+
+
+        [Fact]
+        public void UpdateSingleUser_BasedOnUserId_PassingValidUserId_ReturnsTrue()
         {
             //Arrange
             int id = 6;
@@ -161,5 +262,7 @@ namespace RestAPI_TestCases
             Assert.True(data);
          
         }
+
+
     }
 }
