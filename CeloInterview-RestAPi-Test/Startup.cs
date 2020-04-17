@@ -45,6 +45,7 @@ namespace CeloInterview_RestAPi_Test
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseHealthChecks("/health");
