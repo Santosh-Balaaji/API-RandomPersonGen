@@ -28,7 +28,11 @@ namespace CeloInterview_RestAPi_Test.Controllers
         [HttpGet("{quantity:int}")]
         public IActionResult FetchRandomUsersBasedOnQuantity(int quantity)
         {
-            return Ok(_repositoryContext.FetchUsersBasedOnQuantitySpecified(quantity));
+            var dataCount = _repositoryContext.GetAllUsers();
+            if (quantity <= dataCount.Count)
+                return Ok(_repositoryContext.FetchUsersBasedOnQuantitySpecified(quantity));
+            else
+                return BadRequest("The total amount of users in DB is "+dataCount.Count+". Please mention a value less than or equal to the amount mentioned.");
         }
 
         //Get: api/Users/Santosh

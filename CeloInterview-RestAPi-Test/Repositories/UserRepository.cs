@@ -30,6 +30,11 @@ namespace CeloInterview_RestAPi_Test.Repositories
 
         public List<Users> FetchUsersBasedOnQuantitySpecified(int quantity)
         {
+            var dataCount = (from user in _UsersContext.Users
+                          select user).ToList();
+            if (quantity > dataCount.Count)
+                return null;
+
             var  result = _UsersContext.Users.OrderBy(x => Guid.NewGuid()).Take(quantity).ToList();
 
             return result;

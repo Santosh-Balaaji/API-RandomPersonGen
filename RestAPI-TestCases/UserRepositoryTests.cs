@@ -143,6 +143,21 @@ namespace RestAPI_TestCases
             Assert.Equal(dataCount, quantity);
         }
 
+        [Fact]
+        public void GetRandomUsers_BasedOnQuantitySpecified_PassingGreaterValueThanPresentInDB_Passed15_ReturnsNull()
+        {
+
+            //Arrange
+            int quantity = 15;
+
+            // Act
+            var data = _Users.FetchUsersBasedOnQuantitySpecified(quantity);
+
+            // Assert
+
+            Assert.Null(data);
+        }
+
 
         //This test case can fail sometimes as both the call statements might fetch the same set of users.
         [Fact]
@@ -263,6 +278,21 @@ namespace RestAPI_TestCases
          
         }
 
+        [Fact]
+        public void CreateNewUser_PassingValidUserDetails_ReturnsTrue()
+        {
+            //Arrange
+            int id = 6;
+            var user = new Users { UserId=7 ,Title = "Ms", FirstName = "Aishwarya", LastName = "Venkat", EmailId = "aishu@gmail.com", PhoneNumber = "220760123", DateOfBirth = DateTime.Parse("1995-02-21T00:00:00"), ProfileImages = Encoding.ASCII.GetBytes("c2FudG9zaC5wbmc=") };
+
+            //Act
+            var data = _Users.InsertNewUser(user);
+
+
+            //Assert
+            Assert.True(data);
+
+        }
 
     }
 }
