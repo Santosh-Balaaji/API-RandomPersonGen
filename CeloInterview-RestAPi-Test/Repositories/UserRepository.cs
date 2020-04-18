@@ -100,5 +100,35 @@ namespace CeloInterview_RestAPi_Test.Repositories
 
         }
 
+        public bool InsertNewUser(Users user)
+        {
+            if (user == null)
+                return false;
+
+            if (user.Title == null)
+                return false;
+            if (user.FirstName == null)
+                return false;
+            if (user.LastName == null)
+                return false;
+            if (user.PhoneNumber == null)
+                return false;
+            if (user.EmailId == null)
+                return false;
+
+
+            _UsersContext.Users.Add(user);
+            try
+            {
+                _UsersContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                // Provide for exceptions.
+            }
+            return true;
+        }
+
     }
 }

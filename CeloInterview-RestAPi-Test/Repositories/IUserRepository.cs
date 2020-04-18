@@ -11,5 +11,6 @@ namespace CeloInterview_RestAPi_Test.Repositories
         Users GetUsersBasedOnId(int id);
         bool DeleteUserBasedOnUserId(int id);
         bool UpdateUserBasedOnId(int id, Users userDetails);
+        bool InsertNewUser(Users user);
     }
 }

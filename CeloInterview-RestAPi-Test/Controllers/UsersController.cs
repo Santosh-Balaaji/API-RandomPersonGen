@@ -64,9 +64,22 @@ namespace CeloInterview_RestAPi_Test.Controllers
             if (updateStatus)
                 return Ok(_repositoryContext.GetUsersBasedOnId(id));
             else
-                throw new Exception("User belonging to the mentioned Id not found");
+                return BadRequest("User belonging to the mentioned Id not found");
 
         }
-        
+        //POST: api/Users
+        [HttpPost]
+        public IActionResult CreateNewUser([FromBody] Users user)
+        {
+            bool updateStatus = _repositoryContext.InsertNewUser(user);
+            if (updateStatus)
+                return Ok("Successfully Inserted");
+            else
+                return BadRequest("Please Provide Proper User Details in this order Title, FirstName, LastName, EmailId, PhoneNumber, DateOfBirth[DD-MON-YY], ProfileImages(optional)");
+
+        }
+
+
+
     }
 }
